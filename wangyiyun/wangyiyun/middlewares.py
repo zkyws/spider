@@ -70,21 +70,7 @@ class WangyiyunDownloaderMiddleware(object):
         return s
 
     def process_request(self, request, spider):
-        get_ip_url = "http://webapi.http.zhimacangku.com/getip?num=1&type=2&pro=&city=0&yys=0&port=1&pack=60734&ts=1&ys=0&cs=0&lb=1&sb=0&pb=4&mr=1&regions="
-        ipaddr = requests.get(get_ip_url)
-        ip_json = json.loads(ipaddr.text)
-        print(ip_json)
-        ip_detail = ip_json["data"][0]
-        ip = ip_detail["ip"]
-        port = ip_detail["port"]
-        expire_time = ip_detail["expire_time"]
-        temp = {
-            "ip": ip,
-            "port": port,
-            "expire_time": expire_time
-        }
-        request.meta["proxy"] = "http://" + temp["ip"] + ":" + str(temp["port"])
-        print("http://" + temp["ip"] + ":" + str(temp["port"]) + "   expire_time: " + temp["expire_time"])
+        
         # Called for each request that goes through the downloader
         # middleware.
 
